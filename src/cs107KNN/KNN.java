@@ -4,19 +4,13 @@ import java.lang.Math; // to raise a number to the power of another number
 public class KNN {
 	public static void main(String[] args) {
 
-        byte[] data = Helpers.readBinaryFile("datasets/10-per-digit_images_train");
 
-
-		//byte b1 = 40; // 00101000
-		//byte b2 = 20; // 00010100
-		//byte b3 = 10; // 00001010
-		//byte b4 = 5; //  00000101
-
-		byte b1 = 0; // 00101000
-		byte b2 = 0; // 00010100
-		byte b3 = 8; // 00001010
-		byte b4 = 1; //  00000101
+        byte b1 = 40; // 00101000
+        byte b2 = 20; // 00010100
+        byte b3 = 10; // 00001010
+        byte b4 = 5; //  00000101
 		// [00101000 | 00010100 | 00001010 | 00000101] = 672401925
+        
 		int result = extractInt(b1, b2, b3, b4);
         System.out.println(result);
 
