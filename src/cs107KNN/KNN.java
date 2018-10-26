@@ -1,20 +1,25 @@
 package cs107KNN;
+import java.lang.Math; // to raise a number to the power of another number 
 
 public class KNN {
 	public static void main(String[] args) {
-		byte b1 = 40; // 00101000
-		byte b2 = 20; // 00010100
-		byte b3 = 10; // 00001010
-		byte b4 = 5; // 00000101
 
+        byte[] data = Helpers.readBinaryFile("datasets/10-per-digit_images_train");
+
+
+		//byte b1 = 40; // 00101000
+		//byte b2 = 20; // 00010100
+		//byte b3 = 10; // 00001010
+		//byte b4 = 5; //  00000101
+
+		byte b1 = 0; // 00101000
+		byte b2 = 0; // 00010100
+		byte b3 = 8; // 00001010
+		byte b4 = 1; //  00000101
 		// [00101000 | 00010100 | 00001010 | 00000101] = 672401925
 		int result = extractInt(b1, b2, b3, b4);
-		System.out.println(result);
+        System.out.println(result);
 
-		String bits = "10000001";
-		System.out.println("La séquence de bits " + bits + "\n\tinterprétée comme byte non signé donne "
-				+ Helpers.interpretUnsigned(bits) + "\n\tinterpretée comme byte signé donne "
-				+ Helpers.interpretSigned(bits));
 	}
 
 	/**
@@ -25,8 +30,45 @@ public class KNN {
 	 * @return the integer having form [ b31ToB24 | b23ToB16 | b15ToB8 | b7ToB0 ]
 	 */
 	public static int extractInt(byte b31ToB24, byte b23ToB16, byte b15ToB8, byte b7ToB0) {
-		// TODO: Implémenter
-		return 0;
+
+        String result = "";
+        String bin = "";
+
+        byte[] bytes = new byte[] {b31ToB24, b23ToB16, b15ToB8, b7ToB0};
+
+        /*
+         * Transforms the decimal byte into binary
+         */
+        for (byte b: bytes ) {
+            byte num = b;
+            while (num > 0){
+                int r = num%2;
+                bin = r + bin;
+                num /= 2;
+            }
+            /*
+             * Since not all binaries are 8 bites long, make them 8 bites long
+             */
+            String fill = "";
+            for (int n = 0; n < 8-bin.length(); n++){
+                fill += "0";
+            }
+            bin = fill + bin;
+            result += bin;
+            bin = "";
+        }
+
+        /*
+         * Now tranform the long binary into an int
+         */
+        double decResult = 0.0;
+        for (int n = 0; n < result.length() ; n++ ) {
+            if (result.charAt(n) == '1') {
+                decResult += Math.pow(2, result.length() - n -1);
+            }
+        }
+
+		return (int)decResult;
 	}
 
 	/**
