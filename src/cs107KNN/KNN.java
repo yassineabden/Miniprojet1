@@ -3,17 +3,22 @@ import java.lang.Math; // to raise a number to the power of another number
 
 public class KNN {
 	public static void main(String[] args) {
+        String fileImages = "datasets/10-per-digit_images_train";
+        String fileLabels = "datasets/10-per-digit_labels_train";
 
+        // Extracting data from files
+        byte[] dataImages = Helpers.readBinaryFile(fileImages);
+        byte[] dataLabels = Helpers.readBinaryFile(fileLabels);
 
-        byte b1 = 40; // 00101000
-        byte b2 = 20; // 00010100
-        byte b3 = 10; // 00001010
-        byte b4 = 5; //  00000101
-		// [00101000 | 00010100 | 00001010 | 00000101] = 672401925
-        
-		int result = extractInt(b1, b2, b3, b4);
-        System.out.println(result);
+        // Setting tensor and labels
+        byte[][][] tensor = parseIDXimages(dataImages);
+        byte[] labels = parseIDXlabels(dataLabels);
 
+        if ( tensor == null || labels == null) {
+            System.exit(0);
+        }
+
+        Helpers.show("Title", tensor, labels, 2, 15);
 	}
 
 	/**
@@ -24,45 +29,7 @@ public class KNN {
 	 * @return the integer having form [ b31ToB24 | b23ToB16 | b15ToB8 | b7ToB0 ]
 	 */
 	public static int extractInt(byte b31ToB24, byte b23ToB16, byte b15ToB8, byte b7ToB0) {
-
-        String result = "";
-        String bin = "";
-
-        byte[] bytes = new byte[] {b31ToB24, b23ToB16, b15ToB8, b7ToB0};
-
-        /*
-         * Transforms the decimal byte into binary
-         */
-        for (byte b: bytes ) {
-            byte num = b;
-            while (num > 0){
-                int r = num%2;
-                bin = r + bin;
-                num /= 2;
-            }
-            /*
-             * Since not all binaries are 8 bites long, make them 8 bites long
-             */
-            String fill = "";
-            for (int n = 0; n < 8-bin.length(); n++){
-                fill += "0";
-            }
-            bin = fill + bin;
-            result += bin;
-            bin = "";
-        }
-
-        /*
-         * Now tranform the long binary into an int
-         */
-        double decResult = 0.0;
-        for (int n = 0; n < result.length() ; n++ ) {
-            if (result.charAt(n) == '1') {
-                decResult += Math.pow(2, result.length() - n -1);
-            }
-        }
-
-		return (int)decResult;
+        return (((b31ToB24 & 0xFF)<< 24 ) | ((b23ToB16 & 0xFF)<< 16 ) | ((b15ToB8 & 0xFF)<< 8 ) | ((b7ToB0 & 0xFF)));
 	}
 
 	/**
@@ -73,8 +40,31 @@ public class KNN {
 	 * @return A tensor of images
 	 */
 	public static byte[][][] parseIDXimages(byte[] data) {
-		// TODO: Implémenter
-		return null;
+        int nMagic = extractInt(data[0], data[1], data[2], data[3]);
+        //Checking if the magic number is correct, if not 
+        if (nMagic != 2051) {
+            System.out.println("Error: The magic number for the images is 2049, the magic number of the file you gave is " + nMagic);
+            System.out.println("Check the file you gave to parse the images");
+            return null;
+        }
+
+        int nImages = extractInt(data[4], data[5], data[6], data[7]);;
+        int nRow = extractInt(data[8], data[9], data[10], data[11]);;
+        int nCol = extractInt(data[12], data[13], data[14], data[15]);;;
+
+        byte[][][] parsedImages = new byte[nImages][nRow][nCol];
+
+        System.out.print("We are dealing with "+nImages +" images that are " + nRow + " high and " + nCol + " wide.");
+        System.out.println();
+
+        for (int i = 0; i < parsedImages.length; i++) {
+            for (int r = 0; r < parsedImages[i].length; r++) {
+                for (int c = 0; c < parsedImages[i][r].length; c++) {
+                    parsedImages[i][r][c] = (byte) ((data[16 + c + r*nRow + i*nRow*nCol] & 0xFF) - 128);
+                }
+            }
+        }
+        return parsedImages;
 	}
 
 	/**
@@ -85,8 +75,20 @@ public class KNN {
 	 * @return the parsed labels
 	 */
 	public static byte[] parseIDXlabels(byte[] data) {
-		// TODO: Implémenter
-		return null;
+        int nMagic = extractInt(data[0], data[1], data[2], data[3]);
+        if (nMagic != 2049) {
+            System.out.println("Error: The magic number for the labels is 2051, the magic number of the file you gave is " + nMagic);
+            System.out.println("Check the file you gave to parse the labels");
+            return null;
+        }
+        int nImages = extractInt(data[4], data[5], data[6], data[7]);;
+
+        byte[] parsedLabels = new byte[nImages];
+        for (int i = 0; i < parsedLabels.length; i++) {
+            parsedLabels[i] = data[8+i];
+        }
+
+		return parsedLabels;
 	}
 
 	/**
@@ -104,7 +106,7 @@ public class KNN {
 	/**
 	 * @brief Computes the inverted similarity between 2 images.
 	 * 
-	 * @param a, b two images of same dimensions
+	 * @param a b two images of same dimensions
 	 * 
 	 * @return the inverted similarity between the two images
 	 */
