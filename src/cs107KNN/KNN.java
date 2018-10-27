@@ -18,8 +18,35 @@ public class KNN {
             System.exit(0);
         }
 
-        Helpers.show("Title", tensor, labels, 2, 15);
+        byte[][] im1_1 = tensor[26];
+        byte[][] im1_2 = tensor[25];
+        byte[][] im4 = tensor[0];
+        byte[][] im8 = tensor[1];
+
+        byte[][] black = new byte[28][28];
+        byte[][] white = new byte[28][28];
+        for (int i = 0 ; i < 28 ; i++) {
+            for (int j = 0 ; j < 28 ; j++) {
+                black[i][j] = -128;
+                white[i][j] = 127;
+            }
+            
+        }
+
+
+        System.out.print("Difference between 4 and 8 : ");
+        System.out.println(squaredEuclideanDistance(im4, im8));
+        System.out.print("Difference between 1 and 1 : ");
+        System.out.println(squaredEuclideanDistance(im1_1, im1_2));
+        System.out.println();
+        System.out.print("Difference between white and black : ");
+        System.out.println(squaredEuclideanDistance(white, black));
+        System.out.print("Difference between white and white : ");
+        System.out.println(squaredEuclideanDistance(white, white));
+
+        Helpers.show("title", tensor, labels, 10, 20);
 	}
+        
 
 	/**
 	 * Composes four bytes into an integer using big endian convention.
@@ -98,9 +125,14 @@ public class KNN {
 	 * 
 	 * @return the squared euclidean distance between the two images
 	 */
-	public static float squaredEuclideanDistance(byte[][] a, byte[][] b) {
-		// TODO: Implémenter
-		return 0f;
+    public static float squaredEuclideanDistance(byte[][] a, byte[][] b) {
+        float result = 0f;
+        for (int i = 0 ; i < a.length ; i++) {
+            for (int j = 0 ; j < a[i].length; j++) {
+                result += Math.pow((byte) (a[i][j] - b[i][j]),2); //TODO : ask assistant if we need to put (byte) or not
+            }
+        }
+		return result;
 	}
 
 	/**
@@ -111,7 +143,7 @@ public class KNN {
 	 * @return the inverted similarity between the two images
 	 */
 	public static float invertedSimilarity(byte[][] a, byte[][] b) {
-		// TODO: Implémenter
+        float result = 0f;
 		return 0f;
 	}
 
