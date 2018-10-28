@@ -6,14 +6,14 @@ public class KNNTest {
 	public static void main(String[] args) {
 		// TODO: Adapt path to data files in parsing test
 		// Decommentez au fur et à mesure que vous implémentez
-		//extractIntTest();
-		//parsingTest();
+        //extractIntTest();
+        //parsingTest();
         //squaredEuclideanDistanceTest();
-		//invertedSimilarityTest();
-		//quicksortTest();
-		//indexOfMaxTest();
-		//electLabelTest();
-		//knnClassifyTest();
+        //invertedSimilarityTest();
+        //quicksortTest();
+        //indexOfMaxTest();
+        //electLabelTest();
+        knnClassifyTest();
 		//accuracyTest();
 	}
 

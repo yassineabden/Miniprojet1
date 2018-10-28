@@ -1,5 +1,6 @@
 package cs107KNN;
 import java.lang.Math; // to raise a number to the power of another number 
+import java.util.Arrays;
 
 public class KNN {
 	public static void main(String[] args) {
@@ -15,33 +16,6 @@ public class KNN {
         byte[] labels = parseIDXlabels(dataLabels);
 
         assert tensor != null && labels != null;
-
-        byte[][] im1_1 = tensor[26];
-        byte[][] im1_2 = tensor[25];
-        byte[][] im4 = tensor[0];
-        byte[][] im8 = tensor[1];
-
-        byte[][] black = new byte[28][28];
-        byte[][] white = new byte[28][28];
-        for (int i = 0 ; i < 28 ; i++) {
-            for (int j = 0 ; j < 28 ; j++) {
-                black[i][j] = -128;
-                white[i][j] = 127;
-            }
-            
-        }
-
-        //System.out.print("Difference between 4 and 8 : ");
-        //System.out.println(squaredEuclideanDistance(im4, im8));
-        //System.out.print("Difference between 1 and 1 : ");
-        //System.out.println(squaredEuclideanDistance(im1_1, im1_2));
-        //System.out.println();
-        //System.out.print("Difference between white and black : ");
-        //System.out.println(squaredEuclideanDistance(white, black));
-        //System.out.print("Difference between white and white : ");
-        //System.out.println(squaredEuclideanDistance(white, white));
-
-        //Helpers.show("title", tensor, labels, 10, 20);
         
 	}
         
@@ -79,9 +53,6 @@ public class KNN {
         int nCol = extractInt(data[12], data[13], data[14], data[15]);;;
 
         byte[][][] parsedImages = new byte[nImages][nRow][nCol];
-
-        System.out.print("We are dealing with "+nImages +" images that are " + nRow + " high and " + nCol + " wide.");
-        System.out.println();
 
         for (int i = 0; i < parsedImages.length; i++) {
             for (int r = 0; r < parsedImages[i].length; r++) {
@@ -153,6 +124,7 @@ public class KNN {
         result[1] /= height*width;
         return result;
     }
+
 	/**
 	 * @brief Computes the inverted similarity between 2 images.
 	 * 
@@ -277,8 +249,15 @@ public class KNN {
 	 * @return the index of the largest integer
 	 */
 	public static int indexOfMax(int[] array) {
-		// TODO: Implémenter
-		return 0;
+        assert array.length > 0;
+        int max = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[max] < array[i]) {
+                max = i;
+            }
+        }
+        return max;
+
 	}
 
 	/**
@@ -291,8 +270,15 @@ public class KNN {
 	 * @return the winner of the election
 	 */
 	public static byte electLabel(int[] sortedIndices, byte[] labels, int k) {
-		// TODO: Implémenter
-		return 0;
+        int[] ints = new int[10];
+        for (int i = 0 ; i < k ; i++) {
+            ints[labels[sortedIndices[i]]] += 1;
+        }
+        System.out.println("Images is thought to be a "+ints[indexOfMax(ints)]);
+        System.out.println("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]");
+        System.out.println(Arrays.toString(ints));
+
+		return (byte) indexOfMax(ints);
 	}
 
 	/**
@@ -306,8 +292,17 @@ public class KNN {
 	 * @return the label of the image
 	 */
 	public static byte knnClassify(byte[][] image, byte[][][] trainImages, byte[] trainLabels, int k) {
-		// TODO: Implémenter
-		return 0;
+
+        float[] distances = new float[trainImages.length];
+
+        for (int i = 0 ; i < trainImages.length; i++) {
+            distances[i] = squaredEuclideanDistance(image, trainImages[i]);
+        }
+
+        int[] sortedIndices = quicksortIndices(distances);
+
+		return electLabel(sortedIndices, trainLabels, k);
+        
 	}
 
 	/**
