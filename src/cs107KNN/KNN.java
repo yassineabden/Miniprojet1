@@ -4,19 +4,49 @@ import java.util.Arrays;
 
 public class KNN {
 	public static void main(String[] args) {
-        String fileImages = "datasets/10-per-digit_images_train";
-        String fileLabels = "datasets/10-per-digit_labels_train";
+        int TESTS = 1000;
+        int K = 7;
+        int TRAIN_SIZE = 5000;
 
-        // Extracting data from files
-        byte[] dataImages = Helpers.readBinaryFile(fileImages);
-        byte[] dataLabels = Helpers.readBinaryFile(fileLabels);
+        String TRAIN_IMAGE_PATH = "datasets/"+TRAIN_SIZE+"-per-digit_images_train";
+        String TRAIN_LABEL_PATH = "datasets/"+TRAIN_SIZE+"-per-digit_labels_train";
 
-        // Setting tensor and labels
-        byte[][][] tensor = parseIDXimages(dataImages);
-        byte[] labels = parseIDXlabels(dataLabels);
+        String TEST_IMAGE_PATH = "datasets/10k_images_test";
+        String TEST_LABEL_PATH = "datasets/10k_labels_test";
 
-        assert tensor != null && labels != null;
-        
+        byte[][][] trainImages = parseIDXimages(Helpers.readBinaryFile(TRAIN_IMAGE_PATH));
+        byte[] trainLabels = parseIDXlabels(Helpers.readBinaryFile(TRAIN_LABEL_PATH));
+
+        assert trainLabels != null && trainImages != null;
+
+        byte[][][] testImages = parseIDXimages(Helpers.readBinaryFile(TEST_IMAGE_PATH));
+        byte[] testLabels = parseIDXlabels(Helpers.readBinaryFile(TEST_LABEL_PATH));
+
+        assert testLabels != null && testImages != null;
+
+        byte[] predictions = new byte[TESTS];
+        long start = System.currentTimeMillis();
+        float perc;
+        int eta = 0;
+        for (int i = 0; i < TESTS; i++) {
+            System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+            perc = (i * 100.0f) / TESTS;
+            long now = System.currentTimeMillis();
+            double time = (now - start) / 1000d;
+            if (i != 0) {
+                eta = (int) (time*(TESTS-i))/i;
+            }
+            System.out.print(perc + "%  |  ETA: "+eta );
+            predictions[i] = knnClassify(testImages[i], trainImages, trainLabels, K);
+        }
+        System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+        long end = System.currentTimeMillis();
+        double time = (end - start) / 1000d;
+        System.out.println("Accuracy = " + accuracy(predictions , Arrays.copyOfRange(testLabels , 0, TESTS)) *100 + " %");
+        System.out.println("Time = " + time + " seconds");
+        System.out.println("Time per test image = " + (time / TESTS));
+
+        //Helpers.show("Test", testImages, predictions, testLabels, 20, 35);
 	}
         
 
@@ -274,10 +304,6 @@ public class KNN {
         for (int i = 0 ; i < k ; i++) {
             ints[labels[sortedIndices[i]]] += 1;
         }
-        System.out.println("Images is thought to be a "+ints[indexOfMax(ints)]);
-        System.out.println("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]");
-        System.out.println(Arrays.toString(ints));
-
 		return (byte) indexOfMax(ints);
 	}
 
@@ -296,7 +322,7 @@ public class KNN {
         float[] distances = new float[trainImages.length];
 
         for (int i = 0 ; i < trainImages.length; i++) {
-            distances[i] = squaredEuclideanDistance(image, trainImages[i]);
+            distances[i] = invertedSimilarity(image, trainImages[i]);
         }
 
         int[] sortedIndices = quicksortIndices(distances);
@@ -314,7 +340,13 @@ public class KNN {
 	 * @return the accuracy of the predictions. Its value is in [0, 1]
 	 */
 	public static double accuracy(byte[] predictedLabels, byte[] trueLabels) {
-		// TODO: Implémenter
-		return 0d;
+        double result = 0d;
+        for (int i = 0; i < predictedLabels.length; i++) {
+            if (predictedLabels[i] == trueLabels[i]) {
+                result += 1;
+            }
+        }
+        result /= predictedLabels.length;
+        return result;
 	}
 }
