@@ -14,9 +14,7 @@ public class KNN {
         byte[][][] tensor = parseIDXimages(dataImages);
         byte[] labels = parseIDXlabels(dataLabels);
 
-        if ( tensor == null || labels == null) {
-            System.exit(0);
-        }
+        assert tensor != null && labels != null;
 
         byte[][] im1_1 = tensor[26];
         byte[][] im1_2 = tensor[25];
@@ -33,18 +31,18 @@ public class KNN {
             
         }
 
+        //System.out.print("Difference between 4 and 8 : ");
+        //System.out.println(squaredEuclideanDistance(im4, im8));
+        //System.out.print("Difference between 1 and 1 : ");
+        //System.out.println(squaredEuclideanDistance(im1_1, im1_2));
+        //System.out.println();
+        //System.out.print("Difference between white and black : ");
+        //System.out.println(squaredEuclideanDistance(white, black));
+        //System.out.print("Difference between white and white : ");
+        //System.out.println(squaredEuclideanDistance(white, white));
 
-        System.out.print("Difference between 4 and 8 : ");
-        System.out.println(squaredEuclideanDistance(im4, im8));
-        System.out.print("Difference between 1 and 1 : ");
-        System.out.println(squaredEuclideanDistance(im1_1, im1_2));
-        System.out.println();
-        System.out.print("Difference between white and black : ");
-        System.out.println(squaredEuclideanDistance(white, black));
-        System.out.print("Difference between white and white : ");
-        System.out.println(squaredEuclideanDistance(white, white));
-
-        Helpers.show("title", tensor, labels, 10, 20);
+        //Helpers.show("title", tensor, labels, 10, 20);
+        
 	}
         
 
@@ -67,6 +65,7 @@ public class KNN {
 	 * @return A tensor of images
 	 */
 	public static byte[][][] parseIDXimages(byte[] data) {
+        assert data != null && data.length > 0;
         int nMagic = extractInt(data[0], data[1], data[2], data[3]);
         //Checking if the magic number is correct, if not 
         if (nMagic != 2051) {
@@ -126,15 +125,34 @@ public class KNN {
 	 * @return the squared euclidean distance between the two images
 	 */
     public static float squaredEuclideanDistance(byte[][] a, byte[][] b) {
+        assert a.length > 0 && b.length > 0;
+
         float result = 0f;
         for (int i = 0 ; i < a.length ; i++) {
             for (int j = 0 ; j < a[i].length; j++) {
-                result += Math.pow((byte) (a[i][j] - b[i][j]),2); //TODO : ask assistant if we need to put (byte) or not
+                result += Math.pow((a[i][j] - b[i][j]),2); //TODO : ask assistant if we need to put (byte) or not
             }
         }
 		return result;
 	}
 
+    public static float[] moyenneImages(byte[][] a, byte[][] b){
+        assert a.length == b.length;
+
+        int height = a.length;
+        int width = a[0].length;
+        float[] result = new float[2];
+        for (int i = 0 ; i< height; i++) {
+            assert a[i].length == b[i].length;
+            for (int j = 0 ; j < width ; j++) {
+                result[0] += a[i][j];
+                result[1] += b[i][j];
+            }
+        }
+        result[0] /= height*width;
+        result[1] /= height*width;
+        return result;
+    }
 	/**
 	 * @brief Computes the inverted similarity between 2 images.
 	 * 
@@ -143,8 +161,40 @@ public class KNN {
 	 * @return the inverted similarity between the two images
 	 */
 	public static float invertedSimilarity(byte[][] a, byte[][] b) {
-        float result = 0f;
-		return 0f;
+        assert a.length == b.length;
+
+        float[] moyennes = moyenneImages(a, b);
+        float moyA = moyennes[0];
+        float moyB = moyennes[1];
+
+
+        float denomA = 0f;
+        float denomB = 0f;
+
+        for (int i = 0 ; i < a.length ; i++) {
+            for (int j = 0 ; j < a[i].length; j++) {
+                denomA += Math.pow((a[i][j] - moyA), 2);
+                denomB += Math.pow((b[i][j] - moyB), 2);
+            }
+        }
+
+        float denom = (float) Math.pow((denomA * denomB), .5);
+
+        if (denom == 0) {
+            return 2;
+        }
+
+        float nom = 0f;
+
+        for (int i = 0 ; i < a.length ; i++) {
+            assert a[i].length == b[i].length;
+            for (int j = 0 ; j < a[i].length; j++) {
+                nom += (a[i][j] - moyA)*(b[i][j] - moyB);
+            }
+        }
+        float result = 1 - nom/denom;
+
+		return result;
 	}
 
 	/**
@@ -158,8 +208,14 @@ public class KNN {
 	 *         Example: values = quicksortIndices([3, 7, 0, 9]) gives [2, 0, 1, 3]
 	 */
 	public static int[] quicksortIndices(float[] values) {
-		// TODO: Implémenter
-		return null;
+        assert values.length > 0;
+        int[] indices = new int[values.length];
+        for (int i = 0 ; i < values.length; i++) {
+            indices[i] = i;
+        }
+
+        quicksortIndices(values, indices, 0, values.length -1 );
+		return indices;
 	}
 
 	/**
@@ -172,7 +228,28 @@ public class KNN {
 	 *                to sort
 	 */
 	public static void quicksortIndices(float[] values, int[] indices, int low, int high) {
-		// TODO: Implémenter
+        int l = low;
+        int h = high;
+        float pivot = values[l];
+        while( l <= h ){
+            if (values[l] < pivot) {
+                l += 1;
+            }
+            else if (values[h] > pivot) {
+                h -= 1;
+            }
+            else {
+                swap(l, h, values, indices);
+                l += 1;
+                h -= 1;
+            }
+        }
+        if (low < h ) {
+            quicksortIndices(values, indices, low, h);
+        }
+        if (high > l) {
+            quicksortIndices(values, indices, l, high);
+        }
 	}
 
 	/**
@@ -183,7 +260,13 @@ public class KNN {
 	 * @param indices the array of ints whose values are to be swapped
 	 */
 	public static void swap(int i, int j, float[] values, int[] indices) {
-		// TODO: Implémenter
+        float tmpV = values[i];
+        values[i] = values[j];
+        values[j] = tmpV;
+
+        int tmpI = indices[i];
+        indices[i] = indices[j];
+        indices[j] = tmpI;
 	}
 
 	/**
