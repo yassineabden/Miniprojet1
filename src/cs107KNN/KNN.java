@@ -22,6 +22,7 @@ public class KNN {
         byte[][][] testImages = parseIDXimages(Helpers.readBinaryFile(TEST_IMAGE_PATH));
         byte[] testLabels = parseIDXlabels(Helpers.readBinaryFile(TEST_LABEL_PATH));
 
+
         assert testLabels != null && testImages != null;
 
         byte[] predictions = new byte[TESTS];
@@ -46,8 +47,8 @@ public class KNN {
         System.out.println("Time = " + time + " seconds");
         System.out.println("Time per test image = " + (time / TESTS));
 
-        //Helpers.show("Test", testImages, predictions, testLabels, 20, 35);
-	}
+        Helpers.show("Test", testImages, predictions, testLabels, 20, 35);
+    }
         
 
 	/**
@@ -57,9 +58,9 @@ public class KNN {
 	 * 
 	 * @return the integer having form [ b31ToB24 | b23ToB16 | b15ToB8 | b7ToB0 ]
 	 */
-	public static int extractInt(byte b31ToB24, byte b23ToB16, byte b15ToB8, byte b7ToB0) {
+    public static int extractInt(byte b31ToB24, byte b23ToB16, byte b15ToB8, byte b7ToB0) {
         return (((b31ToB24 & 0xFF)<< 24 ) | ((b23ToB16 & 0xFF)<< 16 ) | ((b15ToB8 & 0xFF)<< 8 ) | ((b7ToB0 & 0xFF)));
-	}
+    }
 
 	/**
 	 * Parses an IDX file containing images
@@ -84,10 +85,12 @@ public class KNN {
 
         byte[][][] parsedImages = new byte[nImages][nRow][nCol];
 
+        int z = 16;
         for (int i = 0; i < parsedImages.length; i++) {
             for (int r = 0; r < parsedImages[i].length; r++) {
                 for (int c = 0; c < parsedImages[i][r].length; c++) {
-                    parsedImages[i][r][c] = (byte) ((data[16 + c + r*nRow + i*nRow*nCol] & 0xFF) - 128);
+                    parsedImages[i][r][c] = (byte) ((data[z] & 0xFF) - 128);
+                    z++;
                 }
             }
         }
@@ -126,7 +129,7 @@ public class KNN {
 	 * @return the squared euclidean distance between the two images
 	 */
     public static float squaredEuclideanDistance(byte[][] a, byte[][] b) {
-        assert a.length > 0 && b.length > 0;
+        assert a.length > 0 && b.length > 0 && a.length == b.length && a[0].length == b[0].length;
 
         float result = 0f;
         for (int i = 0 ; i < a.length ; i++) {
