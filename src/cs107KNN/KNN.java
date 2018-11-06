@@ -14,6 +14,7 @@ public class KNN {
         String TEST_IMAGE_PATH = "datasets/10k_images_test";
         String TEST_LABEL_PATH = "datasets/10k_labels_test";
 
+
         byte[][][] trainImages = parseIDXimages(Helpers.readBinaryFile(TRAIN_IMAGE_PATH));
         byte[] trainLabels = parseIDXlabels(Helpers.readBinaryFile(TRAIN_LABEL_PATH));
 
@@ -27,20 +28,11 @@ public class KNN {
 
         byte[] predictions = new byte[TESTS];
         long start = System.currentTimeMillis();
-        float perc;
-        int eta = 0;
+
         for (int i = 0; i < TESTS; i++) {
-            System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
-            perc = (i * 100.0f) / TESTS;
-            long now = System.currentTimeMillis();
-            double time = (now - start) / 1000d;
-            if (i != 0) {
-                eta = (int) (time*(TESTS-i))/i;
-            }
-            System.out.print(perc + "%  |  ETA: "+eta );
             predictions[i] = knnClassify(testImages[i], trainImages, trainLabels, K);
         }
-        System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+
         long end = System.currentTimeMillis();
         double time = (end - start) / 1000d;
         System.out.println("Accuracy = " + accuracy(predictions , Arrays.copyOfRange(testLabels , 0, TESTS)) *100 + " %");
@@ -281,7 +273,7 @@ public class KNN {
 	 * 
 	 * @return the index of the largest integer
 	 */
-	public static int indexOfMax(int[] array) {
+    public static int indexOfMax(int[] array) {
         assert array.length > 0;
         int max = 0;
         for (int i = 1; i < array.length; i++) {
@@ -307,6 +299,11 @@ public class KNN {
         for (int i = 0 ; i < k ; i++) {
             ints[labels[sortedIndices[i]]] += 1;
         }
+
+
+        //   0  1  2  3  4  5  6  7  8  9
+        // [ 0, 0, 4, 1, 0, 2, 0, 0, 0, 0]
+        //
 		return (byte) indexOfMax(ints);
 	}
 

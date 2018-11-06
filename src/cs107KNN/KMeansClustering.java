@@ -7,24 +7,26 @@ import java.util.ArrayList;
 
 public class KMeansClustering {
 	public static void main(String[] args) {
-		int K = 5000;
-		int maxIters = 20;
 
-		// TODO: Adaptez les parcours
-		byte[][][] images = KNN.parseIDXimages(Helpers.readBinaryFile("datasets/1000-per-digit_images_train"));
-		byte[] labels = KNN.parseIDXlabels(Helpers.readBinaryFile("datasets/1000-per-digit_labels_train"));
+        int K = 5000;
+        int maxIters = 20;
 
-		byte[][][] reducedImages = KMeansReduce(images, K, maxIters);
+        // TODO: Adaptez les parcours
+        byte[][][] images = KNN.parseIDXimages(Helpers.readBinaryFile("datasets/1000-per-digit_images_train"));
+        byte[] labels = KNN.parseIDXlabels(Helpers.readBinaryFile("datasets/1000-per-digit_labels_train"));
 
-		byte[] reducedLabels = new byte[reducedImages.length];
-		for (int i = 0; i < reducedLabels.length; i++) {
-			reducedLabels[i] = KNN.knnClassify(reducedImages[i], images, labels, 5);
-			System.out.println("Classified " + (i + 1) + " / " + reducedImages.length);
-		}
+        byte[][][] reducedImages = KMeansReduce(images, K, maxIters);
 
-		Helpers.writeBinaryFile("datasets/reduced10Kto1K_images", encodeIDXimages(reducedImages));
-		Helpers.writeBinaryFile("datasets/reduced10Kto1K_labels", encodeIDXlabels(reducedLabels));
-	}
+        //byte[] reducedLabels = new byte[reducedImages.length];
+
+        //for (int i = 0; i < reducedLabels.length; i++) {
+            //reducedLabels[i] = KNN.knnClassify(reducedImages[i], images, labels, 5);
+            //System.out.println("Classified " + (i + 1) + " / " + reducedImages.length);
+        //}
+
+        //Helpers.writeBinaryFile("datasets/reduced10Kto1K_images", encodeIDXimages(reducedImages));
+        //Helpers.writeBinaryFile("datasets/reduced10Kto1K_labels", encodeIDXlabels(reducedLabels));
+    }
 
     /**
      * @brief Encodes a tensor of images into an array of data ready to be written on a file
@@ -35,7 +37,27 @@ public class KMeansClustering {
      */
 	public static byte[] encodeIDXimages(byte[][][] images) {
 		// TODO: Implémenter
-		return null;
+        int nImgs = images.length;
+        int nRows = images[0].length;
+        int nCols = images[0][0].length;
+
+        byte[] ret = new byte [4*4 + nImgs*nRows*nCols];
+
+        encodeInt(2051, ret, 0);
+        encodeInt(nImgs, ret, 4);
+        encodeInt(nRows, ret, 8);
+        encodeInt(nCols, ret, 12);
+
+        int z = 16;
+        for (int i = 0; i < nImgs; i++) {
+            for (int r = 0 ; r < nRows; r++) {
+                for (int c = 0; c < nCols; c++) {
+                    ret[z] = (byte) (images[i][c][r] & 0xFF);
+                    z++;
+                }
+            }
+        }
+		return ret;
 	}
 
     /**
@@ -46,8 +68,20 @@ public class KMeansClustering {
      * @return the array of bytes ready to be written to an IDX file
      */
 	public static byte[] encodeIDXlabels(byte[] labels) {
-		// TODO: Implémenter
-		return null;
+        int nLbls = labels.length;
+
+        byte[] ret = new byte[2*4 + nLbls];
+
+        encodeInt(2049, ret, 0);
+        encodeInt(nLbls, ret, 4);
+
+        int z = 8;
+        for (int l = 0; l < nLbls; l++) {
+            ret[z] = (byte) (labels[l] & 0xFF);
+            z++;
+        }
+
+        return ret;
 	}
 
     /**
@@ -60,7 +94,9 @@ public class KMeansClustering {
      * the others will follow at offset + 1, offset + 2, offset + 3
      */
 	public static void encodeInt(int n, byte[] destination, int offset) {
-		// TODO: Implémenter
+        for (int i = 0 ; i < 4; i++) {
+            destination[offset+i] = (byte) ((n >> (3-i)*8) & 0xFF);
+        }
 	}
 
     /**
@@ -78,18 +114,18 @@ public class KMeansClustering {
 		initialize(tensor, assignments, centroids);
 
 		int nIter = 0;
-		while (nIter < maxIters) {
-			// Step 1: Assign points to closest centroid
-			recomputeAssignments(tensor, centroids, assignments);
-			System.out.println("Recomputed assignments");
-			// Step 2: Recompute centroids as average of points
-			recomputeCentroids(tensor, centroids, assignments);
-			System.out.println("Recomputed centroids");
+        while (nIter < maxIters) {
+            // Step 1: Assign points to closest centroid
+            recomputeAssignments(tensor, centroids, assignments);
+            System.out.println("Recomputed assignments");
+            // Step 2: Recompute centroids as average of points
+            recomputeCentroids(tensor, centroids, assignments);
+            System.out.println("Recomputed centroids");
 
-			System.out.println("KMeans completed iteration " + (nIter + 1) + " / " + maxIters);
+            System.out.println("KMeans completed iteration " + (nIter + 1) + " / " + maxIters);
 
-			nIter++;
-		}
+            nIter++;
+        }
 
 		return centroids;
 	}
