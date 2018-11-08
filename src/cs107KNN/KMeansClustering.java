@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class KMeansClustering {
 	public static void main(String[] args) {
 
-        int K = 5000;
+        int K = 1000;
         int maxIters = 20;
 
         // TODO: Adaptez les parcours
@@ -17,15 +17,19 @@ public class KMeansClustering {
 
         byte[][][] reducedImages = KMeansReduce(images, K, maxIters);
 
-        //byte[] reducedLabels = new byte[reducedImages.length];
+        byte[] reducedLabels = new byte[reducedImages.length];
 
-        //for (int i = 0; i < reducedLabels.length; i++) {
-            //reducedLabels[i] = KNN.knnClassify(reducedImages[i], images, labels, 5);
-            //System.out.println("Classified " + (i + 1) + " / " + reducedImages.length);
-        //}
+        Helpers.show("blw", reducedImages, 25, 25);//tbd
 
-        //Helpers.writeBinaryFile("datasets/reduced10Kto1K_images", encodeIDXimages(reducedImages));
-        //Helpers.writeBinaryFile("datasets/reduced10Kto1K_labels", encodeIDXlabels(reducedLabels));
+        for (int i = 0; i < reducedLabels.length; i++) {
+            reducedLabels[i] = KNN.knnClassify(reducedImages[i], images, labels, 5);
+            System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");//tdb
+            System.out.print("Classified " + (i + 1) + " / " + reducedImages.length);
+        }
+        Helpers.show("blw", reducedImages, reducedLabels, 15, 15); //tdb
+
+        Helpers.writeBinaryFile("datasets/reduced10Kto1K_images", encodeIDXimages(reducedImages));
+        Helpers.writeBinaryFile("datasets/reduced10Kto1K_labels", encodeIDXlabels(reducedLabels));
     }
 
     /**
@@ -37,9 +41,9 @@ public class KMeansClustering {
      */
 	public static byte[] encodeIDXimages(byte[][][] images) {
 		// TODO: Implémenter
-        int nImgs = images.length;
-        int nRows = images[0].length;
-        int nCols = images[0][0].length;
+        int nImgs=images.length;
+        int nRows=images[0].length;
+        int nCols=images[0][0].length;
 
         byte[] ret = new byte [4*4 + nImgs*nRows*nCols];
 
@@ -129,6 +133,25 @@ public class KMeansClustering {
 
 		return centroids;
 	}
+    
+    /**
+     * Searches for the minimal number in array 
+     *
+     * @param array is the array with the distances between the image that is
+     * analyzed and the centroids
+     *
+     * @return the index of the closests (minimal distance) image of the
+     * centroid 
+     */
+    public static int indexOfMin(float[] array){
+        int min = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[min] > array[i]) {
+                min = i;
+            }
+        }
+        return min;
+    }
 
    /**
      * @brief Assigns each image to the cluster whose centroid is the closest.
@@ -140,7 +163,50 @@ public class KMeansClustering {
      *  if j is at position i, then image i belongs to cluster j
      */
 	public static void recomputeAssignments(byte[][][] tensor, byte[][][] centroids, int[] assignments) {
+        System.out.println("Calculating distances");
+        //float perc;
+        int eta = 1;
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < tensor.length; i++) {
+            //perc = (i*100.0f) / tensor.length;
+            long now = System.currentTimeMillis();
+            double time = (now - start )/ 1000d;
+            if (i != 0) {
+                 eta = (int) ((time/i)*(tensor.length-i));
+            }
+
+            System.out.print("Calculating... "+i+"/" +tensor.length+" | ETA: " +String.format("%d:%02d", eta/60, eta%60) );
+            float[] distances = new float[centroids.length];
+            for (int c = 0 ; c < centroids.length; c++) {
+
+                distances[c] = KNN.squaredEuclideanDistance(tensor[i], centroids[c]);
+            }
+            assignments[i] = indexOfMin(distances);
+            System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+        }
+        System.out.println();
 	}
+
+    /**
+     * Calculates the average of the given pixels
+     *
+     * @param pixels is the array containing the pixels to be average
+     *
+     * @return the average
+     */
+    public static byte averagePixel(byte[] pixels){
+
+        int avr = 0;
+        for (byte b : pixels) {
+            //System.out.print(b + ", ");
+            avr += (int) b;
+        }
+        avr = (avr/pixels.length);
+        byte avr1 = (byte) ((avr & 0xFF) - 128);
+        //System.out.println("avr = "+avr +" ---  avr1 = " + avr1);
+
+        return (byte) avr;
+    }
 
     /**
      * @brief Computes the centroid of each cluster by averaging the images in the cluster
@@ -151,6 +217,28 @@ public class KMeansClustering {
      *  if j is at position i, then image i belongs to cluster j
      */
 	public static void recomputeCentroids(byte[][][] tensor, byte[][][] centroids, int[] assignments) {
+        for (int i = 0; i < centroids.length; i++) {
+            ArrayList<byte[][]> assignedToCentroid = new ArrayList<byte[][]>();
+            for (int j = 0; j < assignments.length; j++) {
+                if (assignments[j] == i) {
+                    assignedToCentroid.add(tensor[j]);
+                }
+            }
+            if (assignedToCentroid.size() > 1){
+                byte[][] recomputedCentroid = new byte[centroids[i].length][centroids[i][0].length];
+                for (int r = 0; r < recomputedCentroid.length; r++) {
+                    for (int c = 0; c < recomputedCentroid[r].length; c++) {
+                        byte[] pixels = new byte[assignedToCentroid.size()];
+                        for (int p = 0 ; p < pixels.length; p++) {
+                            pixels[p] = assignedToCentroid.get(p)[r][c];
+                        }
+                        recomputedCentroid[r][c] = averagePixel(pixels);
+                    }
+
+                }
+                centroids[i] = recomputedCentroid;
+            }
+        }
 	}
 
     /**
@@ -173,5 +261,6 @@ public class KMeansClustering {
 			centroids[i] = tensor[cids[i]];
 		for (int i = 0; i < assignments.length; i++)
 			assignments[i] = cids[r.nextInt(cids.length)];
+
 	}
 }

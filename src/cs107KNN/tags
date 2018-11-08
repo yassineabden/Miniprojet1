@@ -1,0 +1,79 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Helpers	Helpers.java	/^public class Helpers {$/;"	c
+KMeansClustering	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^public class KMeansClustering {$/;"	c	language:Java
+KMeansReduce	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^	public static byte[][][] KMeansReduce(byte[][][] tensor, int size, int maxIters) {$/;"	m	language:Java	class:KMeansClustering
+KMeanseReduceRes	SignatureChecks.java	/^    byte[][][] KMeanseReduceRes = KMeansClustering.KMeansReduce(new byte[][][] {}, 0, 0);$/;"	f	class:SignatureChecks
+KNN	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^public class KNN {$/;"	c	language:Java
+KNNTest	KNNTest.java	/^public class KNNTest {$/;"	c
+SignatureChecks	SignatureChecks.java	/^    SignatureChecks() {$/;"	m	class:SignatureChecks
+SignatureChecks	SignatureChecks.java	/^class SignatureChecks {$/;"	c
+accuracy	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static double accuracy(byte[] predictedLabels, byte[] trueLabels) {$/;"	m	language:Java	class:KNN
+accuracyTest	KNNTest.java	/^	public static void accuracyTest() {$/;"	m	class:KNNTest
+averagePixel	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^    public static byte averagePixel(byte[] pixels){$/;"	m	language:Java	class:KMeansClustering
+binaryStringToByte	Helpers.java	/^    public static byte binaryStringToByte(String bits) {$/;"	m	class:Helpers
+byteToBinaryString	Helpers.java	/^    public static String byteToBinaryString(byte b) {$/;"	m	class:Helpers
+cs107KNN	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^package cs107KNN;$/;"	p	language:Java
+cs107KNN	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^package cs107KNN;$/;"	p	language:Java
+cs107KNN	Helpers.java	/^package cs107KNN;$/;"	p
+cs107KNN	KNNTest.java	/^package cs107KNN;$/;"	p
+cs107KNN	SignatureChecks.java	/^package cs107KNN;$/;"	p
+drawFrame	Helpers.java	/^    private static void drawFrame(JFrame frame) {$/;"	m	class:Helpers	file:
+electLabel	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static byte electLabel(int[] sortedIndices, byte[] labels, int k) {$/;"	m	language:Java	class:KNN
+electLabelRes	SignatureChecks.java	/^    byte electLabelRes = KNN.electLabel(new int[] {}, new byte[] {}, 0);$/;"	f	class:SignatureChecks
+electLabelTest	KNNTest.java	/^	public static void electLabelTest() {$/;"	m	class:KNNTest
+encodeIDXimages	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^	public static byte[] encodeIDXimages(byte[][][] images) {$/;"	m	language:Java	class:KMeansClustering
+encodeIDXimagesRes	SignatureChecks.java	/^    byte[] encodeIDXimagesRes = KMeansClustering.encodeIDXimages(new byte[][][] {});$/;"	f	class:SignatureChecks
+encodeIDXlabels	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^	public static byte[] encodeIDXlabels(byte[] labels) {$/;"	m	language:Java	class:KMeansClustering
+encodeIDXlabelsRes	SignatureChecks.java	/^    byte[] encodeIDXlabelsRes = KMeansClustering.encodeIDXlabels(new byte[] {});$/;"	f	class:SignatureChecks
+encodeInt	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^	public static void encodeInt(int n, byte[] destination, int offset) {$/;"	m	language:Java	class:KMeansClustering
+extractInt	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^    public static int extractInt(byte b31ToB24, byte b23ToB16, byte b15ToB8, byte b7ToB0) {$/;"	m	language:Java	class:KNN
+extractIntRes	SignatureChecks.java	/^    int extractIntRes = KNN.extractInt(t, t, t, t);$/;"	f	class:SignatureChecks
+extractIntTest	KNNTest.java	/^	public static void extractIntTest() {$/;"	m	class:KNNTest
+imagePanel	Helpers.java	/^    private static JPanel imagePanel(BufferedImage im) {$/;"	m	class:Helpers	file:
+imagePanel	Helpers.java	/^    private static JPanel imagePanel(BufferedImage im, byte label) {$/;"	m	class:Helpers	file:
+imagePanel	Helpers.java	/^    private static JPanel imagePanel(BufferedImage im, byte label, byte trueLabel) {$/;"	m	class:Helpers	file:
+indexOfMax	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^    public static int indexOfMax(int[] array) {$/;"	m	language:Java	class:KNN
+indexOfMaxRes	SignatureChecks.java	/^    int indexOfMaxRes = KNN.indexOfMax(new int[] {});$/;"	f	class:SignatureChecks
+indexOfMaxTest	KNNTest.java	/^	public static void indexOfMaxTest() {$/;"	m	class:KNNTest
+indexOfMin	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^    public static int indexOfMin(float[] array){$/;"	m	language:Java	class:KMeansClustering
+initFrame	Helpers.java	/^    private static JFrame initFrame(int rows, int columns, String title) {$/;"	m	class:Helpers	file:
+initialize	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^	public static void initialize(byte[][][] tensor, int[] assignments, byte[][][] centroids) {$/;"	m	language:Java	class:KMeansClustering
+interpretSigned	Helpers.java	/^    public static String interpretSigned(String bits) {$/;"	m	class:Helpers
+interpretUnsigned	Helpers.java	/^    public static String interpretUnsigned(String bits) {$/;"	m	class:Helpers
+invertedSimilarity	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static float invertedSimilarity(byte[][] a, byte[][] b) {$/;"	m	language:Java	class:KNN
+invertedSimilarity	SignatureChecks.java	/^    float invertedSimilarity = KNN.invertedSimilarity(new byte[][] {}, new byte[][] {});$/;"	f	class:SignatureChecks
+invertedSimilarityTest	KNNTest.java	/^	public static void invertedSimilarityTest() {$/;"	m	class:KNNTest
+knnClassify	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static byte knnClassify(byte[][] image, byte[][][] trainImages, byte[] trainLabels, int k) {$/;"	m	language:Java	class:KNN
+knnClassifyRes	SignatureChecks.java	/^    byte knnClassifyRes = KNN.knnClassify(new byte[][] {}, new byte[][][] {}, new byte[] {}, 0);$/;"	f	class:SignatureChecks
+knnClassifyTest	KNNTest.java	/^	public static void knnClassifyTest() {$/;"	m	class:KNNTest
+main	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^	public static void main(String[] args) {$/;"	m	language:Java	class:KMeansClustering
+main	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static void main(String[] args) {$/;"	m	language:Java	class:KNN
+main	KNNTest.java	/^	public static void main(String[] args) {$/;"	m	class:KNNTest
+moyenneImages	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^    public static float[] moyenneImages(byte[][] a, byte[][] b){$/;"	m	language:Java	class:KNN
+parseIDXimages	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static byte[][][] parseIDXimages(byte[] data) {$/;"	m	language:Java	class:KNN
+parseIDXimagesRes	SignatureChecks.java	/^	byte[][][] parseIDXimagesRes = KNN.parseIDXimages(new byte [] {});$/;"	f	class:SignatureChecks
+parseIDXlabels	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static byte[] parseIDXlabels(byte[] data) {$/;"	m	language:Java	class:KNN
+parseIDXlabelsRes	SignatureChecks.java	/^	byte[] parseIDXlabelsRes = KNN.parseIDXlabels(new byte [] {});$/;"	f	class:SignatureChecks
+parsingTest	KNNTest.java	/^	public static void parsingTest() {$/;"	m	class:KNNTest
+quicksortIndices	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static int[] quicksortIndices(float[] values) {$/;"	m	language:Java	class:KNN
+quicksortIndices	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static void quicksortIndices(float[] values, int[] indices, int low, int high) {$/;"	m	language:Java	class:KNN
+quicksortIndicesRes	SignatureChecks.java	/^    int[] quicksortIndicesRes = KNN.quicksortIndices(new float[] {});$/;"	f	class:SignatureChecks
+quicksortTest	KNNTest.java	/^	public static void quicksortTest() {$/;"	m	class:KNNTest
+readBinaryFile	Helpers.java	/^    public static byte[] readBinaryFile(String filename) {$/;"	m	class:Helpers
+recomputeAssignments	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^	public static void recomputeAssignments(byte[][][] tensor, byte[][][] centroids, int[] assignments) {$/;"	m	language:Java	class:KMeansClustering
+recomputeCentroids	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KMeansClustering.java	/^	public static void recomputeCentroids(byte[][][] tensor, byte[][][] centroids, int[] assignments) {$/;"	m	language:Java	class:KMeansClustering
+show	Helpers.java	/^    public static void show(String title, byte[][][] tensor, byte[] labels, byte[] trueLabels, int rows, int columns) {$/;"	m	class:Helpers
+show	Helpers.java	/^    public static void show(String title, byte[][][] tensor, byte[] labels, int rows, int columns) {$/;"	m	class:Helpers
+show	Helpers.java	/^    public static void show(String title, byte[][][] tensor, int rows, int columns) {$/;"	m	class:Helpers
+squaredEuclideanDistance	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^    public static float squaredEuclideanDistance(byte[][] a, byte[][] b) {$/;"	m	language:Java	class:KNN
+squaredEuclideanDistance	SignatureChecks.java	/^	float squaredEuclideanDistance = KNN.squaredEuclideanDistance(new byte[][] {}, new byte[][] {});$/;"	f	class:SignatureChecks
+squaredEuclideanDistanceTest	KNNTest.java	/^	public static void squaredEuclideanDistanceTest() {$/;"	m	class:KNNTest
+swap	/home/karma/code/EPFL/Semestre 1/Intro. Prog/Miniprojet1/src/cs107KNN/KNN.java	/^	public static void swap(int i, int j, float[] values, int[] indices) {$/;"	m	language:Java	class:KNN
+t	SignatureChecks.java	/^    byte t = 0;$/;"	f	class:SignatureChecks
+toBufferedImage	Helpers.java	/^    private static BufferedImage toBufferedImage(byte[][] array) {$/;"	m	class:Helpers	file:
+writeBinaryFile	Helpers.java	/^    public static void writeBinaryFile(String filename, byte[] data) {$/;"	m	class:Helpers

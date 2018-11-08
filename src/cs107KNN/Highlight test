@@ -1,0 +1,446 @@
+Highlighting groups for various occasions
+-----------------------------------------
+SpecialKey	SpecialKey
+NonText	NonText
+Directory	Directory
+ErrorMsg	ErrorMsg
+IncSearch	IncSearch
+Search	Search
+MoreMsg	MoreMsg
+ModeMsg	ModeMsg
+LineNr	LineNr
+CursorLineNr	CursorLineNr
+Question	Question
+StatusLine	StatusLine
+StatusLineNC	StatusLineNC
+VertSplit	VertSplit
+Title	Title
+Visual	Visual
+VisualNOS	VisualNOS
+WarningMsg	WarningMsg
+WildMenu	WildMenu
+Folded	Folded
+FoldColumn	FoldColumn
+DiffAdd	DiffAdd
+DiffChange	DiffChange
+DiffDelete	DiffDelete
+DiffText	DiffText
+SignColumn	SignColumn
+Conceal	Conceal
+SpellBad	SpellBad
+SpellCap	SpellCap
+SpellRare	SpellRare
+SpellLocal	SpellLocal
+Pmenu	Pmenu
+PmenuSel	PmenuSel
+PmenuSbar	PmenuSbar
+PmenuThumb	PmenuThumb
+TabLine	TabLine
+TabLineSel	TabLineSel
+TabLineFill	TabLineFill
+CursorColumn	CursorColumn
+CursorLine	CursorLine
+ColorColumn	ColorColumn
+StatusLineTerm	StatusLineTerm
+StatusLineTermNC	StatusLineTermNC
+Cursor	Cursor
+
+Syntax highlighting groups
+--------------------------
+lCursor	lCursor
+MatchParen	MatchParen
+Normal	Normal
+ToolbarLine	ToolbarLine
+ToolbarButton	ToolbarButton
+Comment	Comment
+Constant	Constant
+Special	Special
+Identifier	Identifier
+Statement	Statement
+PreProc	PreProc
+Type	Type
+Underlined	Underlined
+Ignore	Ignore
+Error	Error
+Todo	Todo
+String	String
+Boolean	Boolean
+Function	Function
+Operator	Operator
+vimAutoEvent	vimAutoEvent
+vimFuncName	vimFuncName
+pythonFunction	pythonFunction
+IndentGuidesOdd	IndentGuidesOdd
+IndentGuidesEven	IndentGuidesEven
+javaFold	javaFold
+javaOK	javaOK
+javaLabelRegion	javaLabelRegion
+javaLangObject	javaLangObject
+htmlTagN	htmlTagN
+htmlStrike	htmlStrike
+htmlBoldUnderline	htmlBoldUnderline
+htmlBoldItalic	htmlBoldItalic
+htmlBold	htmlBold
+htmlBoldUnderlineItalic	htmlBoldUnderlineItalic
+htmlUnderlineItalic	htmlUnderlineItalic
+htmlUnderline	htmlUnderline
+htmlItalic	htmlItalic
+cssStyle	cssStyle
+htmlScriptTag	htmlScriptTag
+htmlEventSQ	htmlEventSQ
+htmlEventDQ	htmlEventDQ
+None	None
+javaDocSeeTag	javaDocSeeTag
+javaDebugSpecial	javaDebugSpecial
+javaDebugParen	javaDebugParen
+javaParen	javaParen
+javaParenT1	javaParenT1
+javaParenT	javaParenT
+javaParen1	javaParen1
+javaParenT2	javaParenT2
+javaParen2	javaParen2
+airline_x_inactive	airline_x_inactive
+airline_x_inactive_bold	airline_x_inactive_bold
+airline_x_inactive_red	airline_x_inactive_red
+airline_y_inactive	airline_y_inactive
+airline_y_inactive_bold	airline_y_inactive_bold
+airline_y_inactive_red	airline_y_inactive_red
+airline_z_inactive	airline_z_inactive
+airline_z_inactive_bold	airline_z_inactive_bold
+airline_z_inactive_red	airline_z_inactive_red
+airline_error_inactive	airline_error_inactive
+airline_error_inactive_bold	airline_error_inactive_bold
+airline_error_inactive_red	airline_error_inactive_red
+airline_a_inactive	airline_a_inactive
+airline_a_inactive_bold	airline_a_inactive_bold
+airline_a_inactive_red	airline_a_inactive_red
+airline_b_inactive	airline_b_inactive
+airline_b_inactive_bold	airline_b_inactive_bold
+airline_b_inactive_red	airline_b_inactive_red
+airline_c_inactive	airline_c_inactive
+airline_c_inactive_bold	airline_c_inactive_bold
+airline_c_inactive_red	airline_c_inactive_red
+airline_warning_inactive	airline_warning_inactive
+airline_warning_inactive_bold	airline_warning_inactive_bold
+airline_warning_inactive_red	airline_warning_inactive_red
+airline_x	airline_x
+airline_x_bold	airline_x_bold
+airline_x_red	airline_x_red
+airline_y	airline_y
+airline_y_bold	airline_y_bold
+airline_y_red	airline_y_red
+airline_z	airline_z
+airline_z_bold	airline_z_bold
+airline_z_red	airline_z_red
+airline_error	airline_error
+airline_error_bold	airline_error_bold
+airline_error_red	airline_error_red
+airline_a	airline_a
+airline_a_bold	airline_a_bold
+airline_a_red	airline_a_red
+airline_b	airline_b
+airline_b_bold	airline_b_bold
+airline_b_red	airline_b_red
+airline_c	airline_c
+airline_c_bold	airline_c_bold
+airline_c_red	airline_c_red
+airline_warning	airline_warning
+airline_warning_bold	airline_warning_bold
+airline_warning_red	airline_warning_red
+airline_tab	airline_tab
+airline_tabsel	airline_tabsel
+airline_tabtype	airline_tabtype
+airline_tabfill	airline_tabfill
+airline_tabmod	airline_tabmod
+airline_tabmod_unsel	airline_tabmod_unsel
+airline_tabhid	airline_tabhid
+airline_tab_right	airline_tab_right
+airline_tabsel_right	airline_tabsel_right
+airline_tabmod_right	airline_tabmod_right
+airline_tabhid_right	airline_tabhid_right
+airline_tabmod_unsel_right	airline_tabmod_unsel_right
+airline_a_to_airline_b	airline_a_to_airline_b
+airline_b_to_airline_c	airline_b_to_airline_c
+airline_c_to_airline_x	airline_c_to_airline_x
+airline_x_to_airline_y	airline_x_to_airline_y
+airline_y_to_airline_z	airline_y_to_airline_z
+airline_z_to_airline_warning	airline_z_to_airline_warning
+airline_tabsel_to_airline_tabfill	airline_tabsel_to_airline_tabfill
+airline_tabfill_to_airline_tabfill	airline_tabfill_to_airline_tabfill
+airline_tabfill_to_airline_tabtype	airline_tabfill_to_airline_tabtype
+NonText	links	NonText	links to EndOfBuffer
+Search	links	Search	links to QuickFixLine
+Constant	links	Constant	links to Character
+Constant	links	Constant	links to Number
+Number	links	Number	links to Float
+Statement	links	Statement	links to Conditional
+Statement	links	Statement	links to Repeat
+Statement	links	Statement	links to Label
+Statement	links	Statement	links to Keyword
+Statement	links	Statement	links to Exception
+PreProc	links	PreProc	links to Include
+PreProc	links	PreProc	links to Define
+PreProc	links	PreProc	links to Macro
+PreProc	links	PreProc	links to PreCondit
+Type	links	Type	links to StorageClass
+Type	links	Type	links to Structure
+Type	links	Type	links to Typedef
+Special	links	Special	links to Tag
+Special	links	Special	links to SpecialChar
+Special	links	Special	links to Delimiter
+Special	links	Special	links to SpecialComment
+Special	links	Special	links to Debug
+Anchor	links	Anchor	links to CTagsAnchor
+Keyword	links	Keyword	links to Anchor
+AutoCommand	links	AutoCommand	links to CTagsAutoCommand
+Keyword	links	Keyword	links to AutoCommand
+BlockData	links	BlockData	links to CTagsBlockData
+Keyword	links	Keyword	links to BlockData
+Class	links	Class	links to CTagsClass
+Keyword	links	Keyword	links to Class
+Command	links	Command	links to CTagsCommand
+Keyword	links	Keyword	links to Command
+CommonBlocks	links	CommonBlocks	links to CTagsCommonBlocks
+Keyword	links	Keyword	links to CommonBlocks
+Component	links	Component	links to CTagsComponent
+Keyword	links	Keyword	links to Component
+Constant	links	Constant	links to CTagsConstant
+Data	links	Data	links to CTagsData
+Keyword	links	Keyword	links to Data
+DefinedName	links	DefinedName	links to CTagsDefinedName
+Keyword	links	Keyword	links to DefinedName
+Domain	links	Domain	links to CTagsDomain
+Keyword	links	Keyword	links to Domain
+Entity	links	Entity	links to CTagsEntity
+Keyword	links	Keyword	links to Entity
+EntryPoint	links	EntryPoint	links to CTagsEntryPoint
+Keyword	links	Keyword	links to EntryPoint
+Enumeration	links	Enumeration	links to CTagsEnumeration
+Keyword	links	Keyword	links to Enumeration
+EnumerationName	links	EnumerationName	links to CTagsEnumerationName
+Keyword	links	Keyword	links to EnumerationName
+EnumerationValue	links	EnumerationValue	links to CTagsEnumerationValue
+Keyword	links	Keyword	links to EnumerationValue
+EnumeratorName	links	EnumeratorName	links to CTagsEnumeratorName
+Keyword	links	Keyword	links to EnumeratorName
+Event	links	Event	links to CTagsEvent
+Keyword	links	Keyword	links to Event
+Exception	links	Exception	links to CTagsException
+Extern	links	Extern	links to CTagsExtern
+Keyword	links	Keyword	links to Extern
+Feature	links	Feature	links to CTagsFeature
+Keyword	links	Keyword	links to Feature
+Field	links	Field	links to CTagsField
+Keyword	links	Keyword	links to Field
+File	links	File	links to CTagsFile
+Keyword	links	Keyword	links to File
+FileDescription	links	FileDescription	links to CTagsFileDescription
+Keyword	links	Keyword	links to FileDescription
+Format	links	Format	links to CTagsFormat
+Keyword	links	Keyword	links to Format
+Fragment	links	Fragment	links to CTagsFragment
+Keyword	links	Keyword	links to Fragment
+Function	links	Function	links to CTagsFunction
+FunctionObject	links	FunctionObject	links to CTagsFunctionObject
+Keyword	links	Keyword	links to FunctionObject
+GlobalConstant	links	GlobalConstant	links to CTagsGlobalConstant
+Keyword	links	Keyword	links to GlobalConstant
+GlobalVariable	links	GlobalVariable	links to CTagsGlobalVariable
+Keyword	links	Keyword	links to GlobalVariable
+GroupItem	links	GroupItem	links to CTagsGroupItem
+Keyword	links	Keyword	links to GroupItem
+Import	links	Import	links to CTagsImport
+Keyword	links	Keyword	links to Import
+Index	links	Index	links to CTagsIndex
+Keyword	links	Keyword	links to Index
+Interface	links	Interface	links to CTagsInterface
+Keyword	links	Keyword	links to Interface
+InterfaceComponent	links	InterfaceComponent	links to CTagsInterfaceComponent
+Keyword	links	Keyword	links to InterfaceComponent
+Label	links	Label	links to CTagsLabel
+LocalVariable	links	LocalVariable	links to CTagsLocalVariable
+Keyword	links	Keyword	links to LocalVariable
+Macro	links	Macro	links to CTagsMacro
+Map	links	Map	links to CTagsMap
+Keyword	links	Keyword	links to Map
+Member	links	Member	links to CTagsMember
+Keyword	links	Keyword	links to Member
+Method	links	Method	links to CTagsMethod
+Keyword	links	Keyword	links to Method
+Module	links	Module	links to CTagsModule
+Keyword	links	Keyword	links to Module
+Namelist	links	Namelist	links to CTagsNamelist
+Keyword	links	Keyword	links to Namelist
+Namespace	links	Namespace	links to CTagsNamespace
+Keyword	links	Keyword	links to Namespace
+NetType	links	NetType	links to CTagsNetType
+Keyword	links	Keyword	links to NetType
+Package	links	Package	links to CTagsPackage
+Keyword	links	Keyword	links to Package
+Paragraph	links	Paragraph	links to CTagsParagraph
+Keyword	links	Keyword	links to Paragraph
+Pattern	links	Pattern	links to CTagsPattern
+Keyword	links	Keyword	links to Pattern
+Port	links	Port	links to CTagsPort
+Keyword	links	Keyword	links to Port
+Program	links	Program	links to CTagsProgram
+Keyword	links	Keyword	links to Program
+Property	links	Property	links to CTagsProperty
+Keyword	links	Keyword	links to Property
+Prototype	links	Prototype	links to CTagsPrototype
+Keyword	links	Keyword	links to Prototype
+Publication	links	Publication	links to CTagsPublication
+Keyword	links	Keyword	links to Publication
+Record	links	Record	links to CTagsRecord
+Keyword	links	Keyword	links to Record
+RegisterType	links	RegisterType	links to CTagsRegisterType
+Keyword	links	Keyword	links to RegisterType
+Section	links	Section	links to CTagsSection
+Keyword	links	Keyword	links to Section
+Service	links	Service	links to CTagsService
+Keyword	links	Keyword	links to Service
+Set	links	Set	links to CTagsSet
+Keyword	links	Keyword	links to Set
+Signature	links	Signature	links to CTagsSignature
+Keyword	links	Keyword	links to Signature
+Singleton	links	Singleton	links to CTagsSingleton
+Keyword	links	Keyword	links to Singleton
+Slot	links	Slot	links to CTagsSlot
+Keyword	links	Keyword	links to Slot
+SqlCursor	links	SqlCursor	links to CTagsSqlCursor
+Keyword	links	Keyword	links to SqlCursor
+Structure	links	Structure	links to CTagsStructure
+Subroutine	links	Subroutine	links to CTagsSubroutine
+Keyword	links	Keyword	links to Subroutine
+Synonym	links	Synonym	links to CTagsSynonym
+Keyword	links	Keyword	links to Synonym
+Table	links	Table	links to CTagsTable
+Keyword	links	Keyword	links to Table
+Task	links	Task	links to CTagsTask
+Keyword	links	Keyword	links to Task
+Trigger	links	Trigger	links to CTagsTrigger
+Keyword	links	Keyword	links to Trigger
+Type	links	Type	links to CTagsType
+TypeComponent	links	TypeComponent	links to CTagsTypeComponent
+Keyword	links	Keyword	links to TypeComponent
+Union	links	Union	links to CTagsUnion
+Keyword	links	Keyword	links to Union
+Variable	links	Variable	links to CTagsVariable
+Keyword	links	Keyword	links to Variable
+View	links	View	links to CTagsView
+Keyword	links	Keyword	links to View
+VirtualPattern	links	VirtualPattern	links to CTagsVirtualPattern
+Keyword	links	Keyword	links to VirtualPattern
+Identifier	links	Identifier	links to cEnum
+Function	links	Function	links to cFunction
+vimAutoEvent	links	vimAutoEvent	links to vimAutoGroup
+vimFuncName	links	vimFuncName	links to vimScriptFuncName
+pythonFunction	links	pythonFunction	links to pythonMethodTag
+pythonFunction	links	pythonFunction	links to pythonClassTag
+Identifier	links	Identifier	links to javaClass
+Function	links	Function	links to javaMethod
+Identifier	links	Identifier	links to javaInterface
+Identifier	links	Identifier	links to csClassOrStruct
+Function	links	Function	links to csMethod
+Type	links	Type	links to rubyModuleName
+Type	links	Type	links to rubyClassName
+Function	links	Function	links to rubyMethodName
+Function	links	Function	links to awkFunctionTag
+Operator	links	Operator	links to shFunctionTag
+Operator	links	Operator	links to tclCommandTag
+Operator	links	Operator	links to perlFunctionTag
+Error	links	Error	links to javaError
+javaError	links	javaError	links to javaError2
+Include	links	Include	links to javaExternal
+Conditional	links	Conditional	links to javaConditional
+Repeat	links	Repeat	links to javaRepeat
+Boolean	links	Boolean	links to javaBoolean
+Constant	links	Constant	links to javaConstant
+Typedef	links	Typedef	links to javaTypedef
+Operator	links	Operator	links to javaOperator
+Type	links	Type	links to javaType
+Statement	links	Statement	links to javaStatement
+StorageClass	links	StorageClass	links to javaStorageClass
+Exception	links	Exception	links to javaExceptions
+Statement	links	Statement	links to javaAssert
+javaStorageClass	links	javaStorageClass	links to javaMethodDecl
+javaStorageClass	links	javaStorageClass	links to javaClassDecl
+String	links	String	links to javaString
+PreProc	links	PreProc	links to javaAnnotation
+Conditional	links	Conditional	links to javaBranch
+javaUserLabel	links	javaUserLabel	links to javaUserLabelRef
+Function	links	Function	links to javaVarArg
+javaStorageClass	links	javaStorageClass	links to javaScopeDecl
+Label	links	Label	links to javaLabel
+Number	links	Number	links to javaNumber
+Character	links	Character	links to javaCharacter
+Label	links	Label	links to javaUserLabel
+Todo	links	Todo	links to javaTodo
+Special	links	Special	links to javaSpecial
+javaComment	links	javaComment	links to javaCommentStar
+SpecialChar	links	SpecialChar	links to javaSpecialChar
+Comment	links	Comment	links to javaComment
+Comment	links	Comment	links to javaLineComment
+javaString	links	javaString	links to javaCommentString
+javaString	links	javaString	links to javaComment2String
+javaCharacter	links	javaCharacter	links to javaCommentCharacter
+Error	links	Error	links to htmlError
+Special	links	Special	links to htmlSpecialChar
+javaScript	links	javaScript	links to javaScriptExpression
+String	links	String	links to htmlString
+String	links	String	links to htmlValue
+htmlError	links	htmlError	links to htmlTagError
+Identifier	links	Identifier	links to htmlEndTag
+Type	links	Type	links to htmlArg
+javaScript	links	javaScript	links to htmlEvent
+Special	links	Special	links to htmlCssDefinition
+Function	links	Function	links to htmlTag
+htmlStatement	links	htmlStatement	links to htmlTagName
+Exception	links	Exception	links to htmlSpecialTagName
+Comment	links	Comment	links to htmlCommentPart
+htmlError	links	htmlError	links to htmlCommentError
+Comment	links	Comment	links to htmlComment
+PreProc	links	PreProc	links to htmlPreStmt
+Error	links	Error	links to htmlPreError
+String	links	String	links to htmlPreAttr
+PreProc	links	PreProc	links to htmlPreProc
+Error	links	Error	links to htmlPreProcAttrError
+PreProc	links	PreProc	links to htmlPreProcAttrName
+Underlined	links	Underlined	links to htmlLink
+Special	links	Special	links to javaScript
+htmlBoldUnderlineItalic	links	htmlBoldUnderlineItalic	links to htmlBoldItalicUnderline
+htmlBoldUnderline	links	htmlBoldUnderline	links to htmlUnderlineBold
+htmlBoldUnderlineItalic	links	htmlBoldUnderlineItalic	links to htmlUnderlineBoldItalic
+htmlBoldUnderlineItalic	links	htmlBoldUnderlineItalic	links to htmlUnderlineItalicBold
+htmlBoldItalic	links	htmlBoldItalic	links to htmlItalicBold
+htmlUnderlineItalic	links	htmlUnderlineItalic	links to htmlItalicUnderline
+htmlBoldUnderlineItalic	links	htmlBoldUnderlineItalic	links to htmlItalicBoldUnderline
+htmlBoldUnderlineItalic	links	htmlBoldUnderlineItalic	links to htmlItalicUnderlineBold
+None	links	None	links to htmlLeadingSpace
+Title	links	Title	links to htmlH1
+htmlH1	links	htmlH1	links to htmlH2
+htmlH2	links	htmlH2	links to htmlH3
+htmlH3	links	htmlH3	links to htmlH4
+htmlH4	links	htmlH4	links to htmlH5
+htmlH5	links	htmlH5	links to htmlH6
+Title	links	Title	links to htmlTitle
+PreProc	links	PreProc	links to htmlHead
+Comment	links	Comment	links to htmlCssStyleComment
+Statement	links	Statement	links to htmlStatement
+Special	links	Special	links to htmlSpecial
+SpecialComment	links	SpecialComment	links to javaCommentTitle
+Special	links	Special	links to javaDocTags
+Comment	links	Comment	links to javaDocComment
+Function	links	Function	links to javaDocParam
+Function	links	Function	links to javaDocSeeTagParam
+Error	links	Error	links to javaSpecialError
+Error	links	Error	links to javaSpecialCharError
+Error	links	Error	links to javaStringError
+javaError	links	javaError	links to javaParenError
+Function	links	Function	links to javaLambdaDef
+Function	links	Function	links to javaFuncDef
+Function	links	Function	links to javaBraces
+Error	links	Error	links to javaSpaceError
+javaClass	links	javaClass	links to javaClassTag
+javaInterface	links	javaInterface	links to javaInterfaceTag
+javaMethod	links	javaMethod	links to javaMethodTag
