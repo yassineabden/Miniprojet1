@@ -23,7 +23,7 @@ public class KMeansClustering {
 
         for (int i = 0; i < reducedLabels.length; i++) {
             reducedLabels[i] = KNN.knnClassify(reducedImages[i], images, labels, 5);
-            System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");//tdb
+            System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");//tdb
             System.out.print("Classified " + (i + 1) + " / " + reducedImages.length);
         }
         Helpers.show("blw", reducedImages, reducedLabels, 15, 15); //tdb
@@ -182,7 +182,7 @@ public class KMeansClustering {
                 distances[c] = KNN.squaredEuclideanDistance(tensor[i], centroids[c]);
             }
             assignments[i] = indexOfMin(distances);
-            System.out.print("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+            System.out.println("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
         }
         System.out.println();
 	}

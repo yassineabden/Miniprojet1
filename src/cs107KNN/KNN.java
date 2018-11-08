@@ -8,8 +8,11 @@ public class KNN {
         int K = 7;
         int TRAIN_SIZE = 5000;
 
-        String TRAIN_IMAGE_PATH = "datasets/"+TRAIN_SIZE+"-per-digit_images_train";
-        String TRAIN_LABEL_PATH = "datasets/"+TRAIN_SIZE+"-per-digit_labels_train";
+        String TRAIN_IMAGE_PATH = "datasets/reduced10Kto1K_images";
+        String TRAIN_LABEL_PATH = "datasets/reduced10Kto1K_labels";
+
+        //String TRAIN_IMAGE_PATH = "datasets/"+TRAIN_SIZE+"-per-digit_images_train";
+        //String TRAIN_LABEL_PATH = "datasets/"+TRAIN_SIZE+"-per-digit_labels_train";
 
         String TEST_IMAGE_PATH = "datasets/10k_images_test";
         String TEST_LABEL_PATH = "datasets/10k_labels_test";
